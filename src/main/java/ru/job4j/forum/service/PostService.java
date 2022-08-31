@@ -30,4 +30,8 @@ public class PostService {
     public void update(Post post) {
         postMem.update(post);
     }
+
+    public void delete(Post post) {
+        postMem.delete(post);
+    }
 }

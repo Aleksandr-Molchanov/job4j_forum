@@ -9,8 +9,9 @@ public class Post {
     private String description;
     private Date created;
 
-    public static Post of(String name, String description, Date created) {
+    public static Post of(Integer id, String name, String description, Date created) {
         Post post = new Post();
+        post.id = id;
         post.name = name;
         post.description = description;
         post.created = created;

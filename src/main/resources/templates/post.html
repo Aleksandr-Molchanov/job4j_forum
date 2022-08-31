@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,7 +14,7 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Forum</title>
 </head>
 <body>
@@ -25,41 +26,43 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <form th:action="@{/formAddPost}" method="GET">
-                    <button type="submit" class="btn btn-primary">Добавить пост</button>
-                </form>
-
-                <a class="nav-item nav-link" th:href="@{/logout}">
-                    <span th:text="${user.username}"></span>
-                    <span> | Выйти</span>
-                </a>
-
+                <a class="nav-item nav-link" th:href="@{/index}" style="margin-right: 750px">На главную</a>
             </div>
+            <a class="nav-item nav-link" th:href="@{/logout}">
+                <span th:text="${user.username}"></span>
+                <span> | Выйти</span>
+            </a>
         </div>
     </nav>
-    <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Дата создания</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="element: ${posts}">
-                <td th:text="${element.id}" />
-                <td>
-                    <a th:href="@{|/descriptionPost/${element.id}|}" th:text="${element.name}"/>
-                </td>
-                <td th:text="${element.description}" />
-                <td th:text="${element.created}" />
-            </tr>
-            </tbody>
-        </table>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Подробное описание
+            </div>
+            <div class="card-body">
+                <p>
+                    <b>Название:</b>
+                </p>
+                <p class="card-text" th:text="${post.name}"/>
+                <p>
+                    <b>Описание:</b>
+                </p>
+                <p class="card-text" th:text="${post.description}"/>
+                <p>
+                    <b>Время последнего изменения:</b>
+                </p>
+                <p class="card-text" th:text="${post.created}"/>
+            </div>
+        </div>
+        <div class="btn-group">
+            <form  th:action="@{|/formEditPost/${post.id}|}" method="GET">
+                <button type="submit" class="btn btn-primary mt-3" style="margin-right: 16px" >Редактировать</button>
+            </form>
+            <form  th:action="@{|/deletePost/${post.id}|}" method="GET">
+                <button type="submit" class="btn btn-primary mt-3" >Удалить</button>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 </body>
 </html>

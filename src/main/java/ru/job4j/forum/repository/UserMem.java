@@ -17,7 +17,7 @@ public class UserMem {
     private final AtomicInteger size = new AtomicInteger(1);
 
     public UserMem() {
-        users.put(1, User.of("user", "123"));
+        users.put(1, User.of("user123", "123"));
     }
 
     public Collection<User> findAll() {
@@ -43,6 +43,7 @@ public class UserMem {
         for (User user : users.values()) {
             if (user.getUsername().equals(userName)) {
                 rsl = Optional.of(user);
+                break;
             }
         }
         return rsl;

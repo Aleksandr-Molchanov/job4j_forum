@@ -17,9 +17,9 @@ public class PostMem {
     private final AtomicInteger size = new AtomicInteger(3);
 
     public PostMem() {
-        posts.put(1, Post.of("Продажа машины.", "Продаю машину ладу 01.", new Date(System.currentTimeMillis())));
-        posts.put(2, Post.of("Продажа машины.", "Продаю машину ладу 02.", new Date(System.currentTimeMillis())));
-        posts.put(3, Post.of("Продажа машины.", "Продаю машину ладу 03.", new Date(System.currentTimeMillis())));
+        posts.put(1, Post.of(1, "Продажа машины.", "Продаю машину ладу 01.", new Date(System.currentTimeMillis())));
+        posts.put(2, Post.of(2, "Продажа машины.", "Продаю машину ладу 02.", new Date(System.currentTimeMillis())));
+        posts.put(3, Post.of(3, "Продажа машины.", "Продаю машину ладу 03.", new Date(System.currentTimeMillis())));
     }
 
     public Collection<Post> findAll() {
@@ -37,6 +37,10 @@ public class PostMem {
     }
 
     public void update(Post post) {
-        posts.put(post.getId(), post);
+        posts.replace(post.getId(), post);
+    }
+
+    public void delete(Post post) {
+        posts.remove(post.getId(), post);
     }
 }
