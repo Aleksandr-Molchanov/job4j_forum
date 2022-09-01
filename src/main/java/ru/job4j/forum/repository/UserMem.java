@@ -17,7 +17,6 @@ public class UserMem {
     private final AtomicInteger size = new AtomicInteger(1);
 
     public UserMem() {
-        users.put(1, User.of("user123", "123"));
     }
 
     public Collection<User> findAll() {

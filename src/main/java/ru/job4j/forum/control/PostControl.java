@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -55,7 +54,7 @@ public class PostControl {
 
     @GetMapping("/deletePost/{postId}")
     public String deletePost(@PathVariable("postId") int id) {
-        posts.delete(posts.findById(id));
+        posts.delete(posts.findById(id).get());
         return "redirect:/index";
     }
 }

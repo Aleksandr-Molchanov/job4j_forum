@@ -2,36 +2,36 @@ package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.repository.PostMem;
+import ru.job4j.forum.repository.PostRepository;
 
-import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class PostService {
 
-    private PostMem postMem;
+    private PostRepository repository;
 
-    public PostService(PostMem postMem) {
-        this.postMem = postMem;
+    public PostService(PostRepository repository) {
+        this.repository = repository;
     }
 
-    public Collection<Post> getAllPosts() {
-        return postMem.findAll();
+    public Iterable<Post> getAllPosts() {
+        return repository.findAll();
     }
 
     public void addPost(Post post) {
-        postMem.add(post);
+        repository.save(post);
     }
 
-    public Post findById(int id) {
-        return postMem.findById(id);
+    public Optional<Post> findById(int id) {
+        return repository.findById(id);
     }
 
     public void update(Post post) {
-        postMem.update(post);
+        repository.save(post);
     }
 
     public void delete(Post post) {
-        postMem.delete(post);
+        repository.delete(post);
     }
 }
