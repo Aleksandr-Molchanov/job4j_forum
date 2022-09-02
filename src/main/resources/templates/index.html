@@ -54,7 +54,7 @@
                     <a th:href="@{|/descriptionPost/${element.id}|}" th:text="${element.name}"/>
                 </td>
                 <td th:text="${element.description}" />
-                <td th:text="${element.created}" />
+                <td th:text="${#dates.format(element.created, 'dd-MMM-yyyy')}" />
             </tr>
             </tbody>
         </table>

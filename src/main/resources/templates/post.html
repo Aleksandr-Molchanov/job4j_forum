@@ -51,7 +51,7 @@
                 <p>
                     <b>Время последнего изменения:</b>
                 </p>
-                <p class="card-text" th:text="${post.created}"/>
+                <p class="card-text" th:text="${#dates.format(post.created, 'dd-MMM-yyyy')}"/>
             </div>
         </div>
         <div class="btn-group">

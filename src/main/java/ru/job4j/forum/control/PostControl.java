@@ -34,14 +34,14 @@ public class PostControl {
     @GetMapping("/descriptionPost/{postId}")
     public String descriptionPost(Model model, @PathVariable("postId") int id) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        model.addAttribute("post", posts.findById(id));
+        model.addAttribute("post", posts.findById(id).get());
         return "post";
     }
 
     @GetMapping("/formEditPost/{postId}")
     public String formEditPost(Model model, @PathVariable("postId") int id) {
         model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        model.addAttribute("post", posts.findById(id));
+        model.addAttribute("post", posts.findById(id).get());
         return "editPost";
     }
 
